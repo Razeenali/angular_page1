@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="sidebar">Outlook Sync</div>
+
+  <div class="main-content">
+    <div class="search-section">
+      <div class="nbk-inputs">
+        <div class="inputs">
+          <div *ngFor="let nbk of nbkInputs; let i = index; trackBy: trackByFn" class="nbk-entry">
+            <input 
+              #nbkInput
+              [(ngModel)]="nbkInputs[i]" 
+              placeholder="Enter NBK"
+              type="text" 
+            />
+            <button *ngIf="nbkInputs.length > 1" (click)="removeNBK(i)" class="remove-button">&times;</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="button-group">
+        <button (click)="getData()" class="action-button">Get Data</button>
+        <button (click)="addNBK()" [disabled]="nbkInputs.length >= 10" class="action-button">Add NBK</button>
+        <button (click)="clearAll()" class="action-button clear-button">Clear All</button>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>NBK</th>
+            <th>Requirement 1</th>
+            <th>Requirement 2</th>
+            <th>Requirement 3</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of tableData">
+            <td>{{ row.nbk }}</td>
+            <td>{{ row.requirement1 }}</td>
+            <td>{{ row.requirement2 }}</td>
+            <td>{{ row.requirement3 }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
