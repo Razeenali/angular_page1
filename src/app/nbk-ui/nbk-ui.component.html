@@ -1,10 +1,15 @@
+<!-- Main container for the layout -->
 <div class="container">
+  <!-- Sidebar section for Outlook Sync -->
   <div class="sidebar">Outlook Sync</div>
 
+  <!-- Main content area -->
   <div class="main-content">
+    <!-- Search section for NBK inputs -->
     <div class="search-section">
       <div class="nbk-inputs">
         <div class="inputs">
+          <!-- Looping through the NBK input fields dynamically -->
           <div *ngFor="let nbk of nbkInputs; let i = index; trackBy: trackByFn" class="nbk-entry">
             <input 
               #nbkInput
@@ -12,11 +17,13 @@
               placeholder="Enter NBK"
               type="text" 
             />
+            <!-- Button to remove input field, shown only if there is more than one input -->
             <button *ngIf="nbkInputs.length > 1" (click)="removeNBK(i)" class="remove-button">&times;</button>
           </div>
         </div>
       </div>
       
+      <!-- Button group for user actions -->
       <div class="button-group">
         <button (click)="getData()" class="action-button">Get Data</button>
         <button (click)="addNBK()" [disabled]="nbkInputs.length >= 10" class="action-button">Add NBK</button>
@@ -24,6 +31,7 @@
       </div>
     </div>
 
+    <!-- Table displaying fetched data -->
     <div class="table-container">
       <table>
         <thead>
@@ -35,6 +43,7 @@
           </tr>
         </thead>
         <tbody>
+          <!-- Looping through table data dynamically -->
           <tr *ngFor="let row of tableData">
             <td>{{ row.nbk }}</td>
             <td>{{ row.requirement1 }}</td>
